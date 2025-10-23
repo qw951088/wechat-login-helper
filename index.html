@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信登录助手</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #07C160;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+        }
+        .wechat-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: white;
+            color: #07C160;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wechat-icon">📱</div>
+        <h1>微信登录助手</h1>
+        <p>点击下方按钮完成微信登录</p>
+        <button class="btn" id="loginBtn">确认登录微信视频号</button>
+        <p style="font-size: 14px; opacity: 0.8;">此页面用于帮助您完成微信登录</p>
+    </div>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            // 获取URL参数中的微信登录链接
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUrl = urlParams.get('url');
+            
+            if (targetUrl) {
+                // 跳转到微信登录页面
+                window.location.href = targetUrl;
+            } else {
+                alert('无效的登录链接');
+            }
+        });
+
+        // 页面加载后3秒自动跳转（可选）
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUrl = urlParams.get('url');
+            const autoRedirect = urlParams.get('auto');
+            
+            if (targetUrl && autoRedirect === '1') {
+                window.location.href = targetUrl;
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
